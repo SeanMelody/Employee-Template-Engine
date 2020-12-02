@@ -77,6 +77,14 @@ const engineer = [
     },
 ]
 
+const intern = [
+    {
+        type: "input",
+        name: "school",
+        message: "Current School: ",
+    },
+]
+
 
 function init() {
     inquirer
