@@ -53,7 +53,7 @@ const employee = [
     {
         type: "list",
         name: "title",
-        message: "Employee's Email:",
+        message: "Employee's Title:",
         choices: ["Manager", "Engineer", "Intern"]
     },
 
@@ -89,6 +89,19 @@ const intern = [
 function init() {
     inquirer
         .prompt(employee)
+        .then((data) => {
+            if (data.title === "Manager") {
+                console.log("Manager")
+            }
+            if (data.title === "Engineer") {
+                console.log("Engineer")
+            }
+            if (data.title === "Intern") {
+                console.log("Intern")
+            }
 
+        })
+        .catch((err) => console.log(err));
+    // .prompt(manager)
 }
 init();
