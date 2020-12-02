@@ -34,6 +34,32 @@ const render = require("./lib/htmlRenderer");
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
+const employee = [
+    {
+        type: "input",
+        name: "name",
+        message: "Employee's Name:"
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "Employee's ID:",
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Employee's Email:",
+    },
+    {
+        type: "list",
+        name: "title",
+        message: "Employee's Email:",
+        choices: ["Manager", "Engineer", "Intern"]
+    },
+
+
+];
+
 
 
 
