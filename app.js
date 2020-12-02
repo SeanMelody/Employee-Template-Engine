@@ -93,16 +93,23 @@ function init() {
         .then((data) => {
             if (data.title === "Manager") {
                 console.log("Manager")
+                inquirer
+                    .prompt(manager)
             }
             if (data.title === "Engineer") {
                 console.log("Engineer")
+                inquirer
+                    .prompt(engineer)
             }
             if (data.title === "Intern") {
                 console.log("Intern")
+                inquirer
+                    .prompt(intern)
             }
 
         })
         .catch((err) => console.log(err));
+
     // .prompt(manager)
 }
 init();

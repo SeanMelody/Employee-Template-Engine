@@ -1,8 +1,10 @@
 const Employee = require("../lib/Employee");
+// const { expect } = require("@jest/globals");
+// const { describe } = require("yargs")
 
 test("Can instantiate Employee instance", () => {
   const e = new Employee();
-  expect(typeof(e)).toBe("object");
+  expect(typeof (e)).toBe("object");
 });
 
 test("Can set name via constructor arguments", () => {
