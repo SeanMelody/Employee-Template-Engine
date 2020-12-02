@@ -60,6 +60,14 @@ const employee = [
 
 ];
 
+const manager = [
+    {
+        type: "input",
+        name: "office",
+        message: "Office Number: ",
+    },
+]
+
 
 
 
