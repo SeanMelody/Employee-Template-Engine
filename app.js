@@ -69,7 +69,13 @@ const manager = [
 ]
 
 
-
+const engineer = [
+    {
+        type: "input",
+        name: "github",
+        message: "GitHub Username: ",
+    },
+]
 
 
 function init() {
