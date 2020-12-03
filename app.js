@@ -70,13 +70,13 @@ const manager = [
 ]
 
 
-// const engineer = [
-//     {
-//         type: "input",
-//         name: "github",
-//         message: "GitHub Username: ",
-//     },
-// ]
+const engineer = [
+    {
+        type: "input",
+        name: "github",
+        message: "GitHub Username: ",
+    },
+]
 
 const intern = [
     {
