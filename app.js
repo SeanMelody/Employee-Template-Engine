@@ -53,8 +53,8 @@ const employee = [
     },
     {
         type: "list",
-        name: "title",
-        message: "Employee's Title:",
+        name: "role",
+        message: "Employee's Role:",
         choices: ["Manager", "Engineer", "Intern"]
     },
 
@@ -64,19 +64,19 @@ const employee = [
 const manager = [
     {
         type: "input",
-        name: "office",
+        name: "officeNumber",
         message: "Office Number: ",
     },
 ]
 
 
-const engineer = [
-    {
-        type: "input",
-        name: "github",
-        message: "GitHub Username: ",
-    },
-]
+// const engineer = [
+//     {
+//         type: "input",
+//         name: "github",
+//         message: "GitHub Username: ",
+//     },
+// ]
 
 const intern = [
     {
@@ -89,19 +89,24 @@ const intern = [
 
 function init() {
     inquirer
+        // .prompt(anotherEmployee)
+
         .prompt(employee)
         .then((data) => {
-            if (data.title === "Manager") {
+            if (data.role === "Manager") {
                 console.log("Manager")
                 inquirer
                     .prompt(manager)
             }
-            if (data.title === "Engineer") {
+            if (data.role === "Engineer") {
                 console.log("Engineer")
                 inquirer
                     .prompt(engineer)
+                // .then(function Engineer(data) {
+
+                // });
             }
-            if (data.title === "Intern") {
+            if (data.role === "Intern") {
                 console.log("Intern")
                 inquirer
                     .prompt(intern)
