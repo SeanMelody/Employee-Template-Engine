@@ -35,6 +35,17 @@ const render = require("./lib/htmlRenderer");
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
+// const testEmployee = {}
+
+const newEmployee = [
+    {
+        type: "list",
+        name: "newEmployee",
+        message: "Add an employee:",
+        choices: ["yes", "no"]
+    }
+]
+
 const employee = [
     {
         type: "input",
@@ -51,12 +62,12 @@ const employee = [
         name: "email",
         message: "Employee's Email:",
     },
-    {
-        type: "list",
-        name: "role",
-        message: "Employee's Role:",
-        choices: ["Manager", "Engineer", "Intern"]
-    },
+    // {
+    //     type: "list",
+    //     name: "role",
+    //     message: "Employee's Role:",
+    //     choices: ["Manager", "Engineer", "Intern"]
+    // },
 
 
 ];
@@ -89,32 +100,83 @@ const intern = [
 
 function init() {
     inquirer
-        // .prompt(anotherEmployee)
+        .prompt(newEmployee)
 
-        .prompt(employee)
+
         .then((data) => {
-            if (data.role === "Manager") {
-                console.log("Manager")
-                inquirer
-                    .prompt(manager)
-            }
-            if (data.role === "Engineer") {
-                console.log("Engineer")
-                inquirer
-                    .prompt(engineer)
-                // .then(function Engineer(data) {
+            if (data.newEmployee === "yes") {
 
-                // });
-            }
-            if (data.role === "Intern") {
-                console.log("Intern")
                 inquirer
-                    .prompt(intern)
-            }
+                    .prompt(employee)
+                    .then((data) => {
+                        // console.log(data)
+                        testEmployee = data
+                        console.log(testEmployee)
+                        // console.log(Employee.data)
+                        if (data.role === "Manager") {
+                            inquirer
+                                .prompt(manager)
+                                .then((data) => {
+                                    console.log(data)
+                                    testEmployee.officeNumber = data
+                                    console.log(testEmployee)
 
+                                })
+                                .catch((err) => console.log(err))
+
+                        }
+                        if (data.role === "Engineer") {
+                            console.log("Engineer")
+                            inquirer
+                                .prompt(engineer)
+
+                        }
+                        if (data.role === "Intern") {
+                            console.log("Intern")
+                            inquirer
+                                .prompt(intern)
+                        }
+                    })
+            } else {
+                render()
+            }
         })
+
         .catch((err) => console.log(err));
 
-    // .prompt(manager)
 }
 init();
+
+// function createEmployee(){
+//     inquirer
+//     .prompt(employee)
+//     .then((data) => {
+//         // console.log(data)
+//         testEmployee = data
+//         console.log(testEmployee)
+//         if (data.role === "Manager") {
+//             inquirer
+//                 .prompt(manager)
+//                 .then((data) => {
+//                     console.log(data)
+//                     testEmployee.append(data)
+//                     console.log(testEmployee)
+
+//                 })
+//                 .catch((err) => console.log(err))
+
+//         }
+//         if (data.role === "Engineer") {
+//             console.log("Engineer")
+//             inquirer
+//                 .prompt(engineer)
+
+//         }
+//         if (data.role === "Intern") {
+//             console.log("Intern")
+//             inquirer
+//                 .prompt(intern)
+//         }
+//     })
+
+// }
