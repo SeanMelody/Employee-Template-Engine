@@ -273,9 +273,11 @@ function askEngineer() {
     inquirer
         .prompt(engineer)
         .then((data) => {
-            engineerGithub = data
-            console.log(engineerGithub)
-            console.log(testEmployee)
+            // engineerGithub = data
+            // console.log(engineerGithub)
+            // console.log(testEmployee)
+            employee = new Engineer(employee.name, employee.id, employee.email, data.github)
+            console.log(employee)
         })
         .catch((err) => console.log(err));
 }
