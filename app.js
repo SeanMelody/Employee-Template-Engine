@@ -42,16 +42,16 @@ const makeManager = util.promisify(fs.readFile);
 
 // const testEmployee = {}
 
-const newEmployee = [
+const anotherEmployee = [
     {
         type: "list",
-        name: "newEmployee",
+        name: "moreEmployees",
         message: "Add an employee:",
         choices: ["yes", "no"]
     }
 ]
 
-const employee = [
+const employeeQuestions = [
     {
         type: "input",
         name: "name",
@@ -77,7 +77,7 @@ const employee = [
 
 ];
 
-const manager = [
+const managerQuestion = [
     {
         type: "input",
         name: "officeNumber",
@@ -157,11 +157,11 @@ const intern = [
 
 function init() {
     inquirer
-        .prompt(newEmployee)
+        .prompt(anotherEmployee)
 
 
         .then((data) => {
-            if (data.newEmployee === "yes") {
+            if (data.moreEmployees === "yes") {
                 askEmployee()
                 // inquirer
                 //     .prompt(employee)
@@ -208,11 +208,13 @@ init();
 function askEmployee() {
 
     inquirer
-        .prompt(employee)
+        .prompt(employeeQuestions)
         .then((data) => {
 
-            testEmployee = data
-            console.log(testEmployee)
+            const newEmployee = new Employee(data.name, data.id, data.email)
+            console.log(newEmployee)
+            // testEmployee = data
+            // console.log(testEmployee)
             if (data.role === "Manager") {
                 askManager()
             }
@@ -231,11 +233,18 @@ function askEmployee() {
 
 function askManager() {
     inquirer
-        .prompt(manager)
+        .prompt(managerQuestion)
         .then((data) => {
             managerOffice = data
             console.log(managerOffice)
+            // const newEmployee = new Employee(data.name, data.id, data.email)
+            // console.log(newEmployee)
+            // console.log(testEmployee)
+            // console.log(newEmployee)
+            // const manager = new Manager(testEmployee.name, testEmployee.id, testEmployee.email, data.officeNumber);
+            // console.log(manager)
         })
+        // .then(render(manager))
         .catch((err) => console.log(err));
 }
 
@@ -246,6 +255,7 @@ function askIntern() {
         .then((data) => {
             internSchool = data
             console.log(internSchool)
+            console.log(testEmployee)
         })
         .catch((err) => console.log(err));
 }
@@ -256,6 +266,7 @@ function askEngineer() {
         .then((data) => {
             engineerGithub = data
             console.log(engineerGithub)
+            console.log(testEmployee)
         })
         .catch((err) => console.log(err));
 }
