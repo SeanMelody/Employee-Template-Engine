@@ -11,6 +11,11 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const util = require("util");
+// const makeManager = util.promisify(fs.writeFile);
+// const ManagerHTML = require("./templates/manager.html")
+const makeManager = util.promisify(fs.readFile);
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -62,12 +67,12 @@ const employee = [
         name: "email",
         message: "Employee's Email:",
     },
-    // {
-    //     type: "list",
-    //     name: "role",
-    //     message: "Employee's Role:",
-    //     choices: ["Manager", "Engineer", "Intern"]
-    // },
+    {
+        type: "list",
+        name: "role",
+        message: "Employee's Role:",
+        choices: ["Manager", "Engineer", "Intern"]
+    },
 
 
 ];
@@ -98,6 +103,58 @@ const intern = [
 ]
 
 
+// function init() {
+//     inquirer
+//         .prompt(newEmployee)
+
+
+//         .then((data) => {
+//             if (data.newEmployee === "yes") {
+
+//                 inquirer
+//                     .prompt(employee)
+//                     .then((data) => {
+//                         // console.log(data)
+//                         testEmployee = data
+//                         console.log(testEmployee)
+//                         // console.log(Employee.data)
+//                         if (data.role === "Manager") {
+//                             inquirer
+//                                 .prompt(manager)
+//                                 .then((data) => {
+//                                     console.log(data)
+//                                     testEmployee.officeNumber = data
+//                                     console.log(testEmployee)
+
+//                                 })
+//                                 .catch((err) => console.log(err))
+
+//                         }
+//                         if (data.role === "Engineer") {
+//                             console.log("Engineer")
+//                             inquirer
+//                                 .prompt(engineer)
+
+//                         }
+//                         if (data.role === "Intern") {
+//                             console.log("Intern")
+//                             inquirer
+//                                 .prompt(intern)
+//                         }
+//                     })
+//             } else {
+//                 render()
+//             }
+//         })
+
+//         .catch((err) => console.log(err));
+
+// }
+// init();
+
+
+
+
 function init() {
     inquirer
         .prompt(newEmployee)
@@ -105,38 +162,38 @@ function init() {
 
         .then((data) => {
             if (data.newEmployee === "yes") {
+                askEmployee()
+                // inquirer
+                //     .prompt(employee)
+                //     .then((data) => {
+                //         // console.log(data)
+                //         testEmployee = data
+                //         console.log(testEmployee)
+                //         if (data.role === "Engineer") {
+                //             makeCompany("Company.html", testEmployee)
+                //                 .then(() => console.log("Engineer Witten"))
+                //                 .catch((err) => console.log(err));
+                //             return makeCompany("Company.html", testEmployee)
 
-                inquirer
-                    .prompt(employee)
-                    .then((data) => {
-                        // console.log(data)
-                        testEmployee = data
-                        console.log(testEmployee)
-                        // console.log(Employee.data)
-                        if (data.role === "Manager") {
-                            inquirer
-                                .prompt(manager)
-                                .then((data) => {
-                                    console.log(data)
-                                    testEmployee.officeNumber = data
-                                    console.log(testEmployee)
+                //             // return engineer.html
+                //         }
 
-                                })
-                                .catch((err) => console.log(err))
 
-                        }
-                        if (data.role === "Engineer") {
-                            console.log("Engineer")
-                            inquirer
-                                .prompt(engineer)
 
-                        }
-                        if (data.role === "Intern") {
-                            console.log("Intern")
-                            inquirer
-                                .prompt(intern)
-                        }
-                    })
+                // if (data.role === "Engineer") {
+                //     console.log("Engineer")
+                //     inquirer
+                //         .prompt(engineer)
+
+                // }
+
+                // if (data.role === "Intern") {
+                //     console.log("Intern")
+                //     inquirer
+                //         .prompt(intern)
+                // }
+
+                // })
             } else {
                 render()
             }
@@ -146,6 +203,74 @@ function init() {
 
 }
 init();
+
+
+function askEmployee() {
+
+    inquirer
+        .prompt(employee)
+        .then((data) => {
+
+            testEmployee = data
+            console.log(testEmployee)
+            if (data.role === "Manager") {
+                // console.log("Manager")
+                askManager()
+                // fs.writeFile("mynewManager.html", "Hi Sean")
+                // makeManager("ManagerTest.html", testEmployee)
+                //     , then(() => console.log("ManagerTest.html written"))
+                //         .catch((err) => console.log(err));
+                // return makeManager("MangerTest.html", testEmployee)
+
+            }
+
+            if (data.role === "Intern") {
+                askIntern()
+            }
+
+            if (data.role === "Engineer") {
+                askEngineer()
+            }
+
+
+            // if (data.role === "Engineer") {
+            //     makeCompany("Company.html", testEmployee)
+            //         .then(() => console.log("Engineer Witten"))
+            //         .catch((err) => console.log(err));
+            //     return makeCompany("Company.html", testEmployee)
+
+            // return engineer.html
+        })
+        .catch((err) => console.log(err));
+}
+
+function askManager() {
+    inquirer
+        .prompt(manager)
+        .then((data) => {
+            managerOffice = data
+            console.log(managerOffice)
+        })
+}
+
+
+function askIntern() {
+    inquirer
+        .prompt(intern)
+        .then((data) => {
+            internSchool = data
+            console.log(internSchool)
+        })
+}
+
+function askEngineer() {
+    inquirer
+        .prompt(engineer)
+        .then((data) => {
+            engineerGithub = data
+            console.log(engineerGithub)
+        })
+}
 
 // function createEmployee(){
 //     inquirer
