@@ -211,10 +211,10 @@ function askEmployee() {
         .prompt(employeeQuestions)
         .then((data) => {
 
-            const newEmployee = new Employee(data.name, data.id, data.email)
-            console.log(newEmployee)
-            // testEmployee = data
-            // console.log(testEmployee)
+            // const employee = new Employee(data.name, data.id, data.email)
+            // console.log(employee)
+            employee = data
+            console.log(employee)
             if (data.role === "Manager") {
                 askManager()
             }
@@ -235,8 +235,14 @@ function askManager() {
     inquirer
         .prompt(managerQuestion)
         .then((data) => {
-            managerOffice = data
-            console.log(managerOffice)
+            // managerOffice = data.officeNumber
+            // console.log(data.officeNumber)
+            // console.log(managerOffice)
+            // console.log(testEmployee.name)
+            employee = new Manager(employee.name, employee.id, employee.email, data.officeNumber)
+            console.log(employee)
+            // const manager = new Manager(Employee.name, Employee.id, Employee.email, data.officeNumber)
+            // console.log(newManger)
             // const newEmployee = new Employee(data.name, data.id, data.email)
             // console.log(newEmployee)
             // console.log(testEmployee)
@@ -244,6 +250,7 @@ function askManager() {
             // const manager = new Manager(testEmployee.name, testEmployee.id, testEmployee.email, data.officeNumber);
             // console.log(manager)
         })
+        // console.log(testEmployee)
         // .then(render(manager))
         .catch((err) => console.log(err));
 }
