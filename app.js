@@ -214,14 +214,7 @@ function askEmployee() {
             testEmployee = data
             console.log(testEmployee)
             if (data.role === "Manager") {
-                // console.log("Manager")
                 askManager()
-                // fs.writeFile("mynewManager.html", "Hi Sean")
-                // makeManager("ManagerTest.html", testEmployee)
-                //     , then(() => console.log("ManagerTest.html written"))
-                //         .catch((err) => console.log(err));
-                // return makeManager("MangerTest.html", testEmployee)
-
             }
 
             if (data.role === "Intern") {
@@ -232,14 +225,6 @@ function askEmployee() {
                 askEngineer()
             }
 
-
-            // if (data.role === "Engineer") {
-            //     makeCompany("Company.html", testEmployee)
-            //         .then(() => console.log("Engineer Witten"))
-            //         .catch((err) => console.log(err));
-            //     return makeCompany("Company.html", testEmployee)
-
-            // return engineer.html
         })
         .catch((err) => console.log(err));
 }
@@ -251,6 +236,7 @@ function askManager() {
             managerOffice = data
             console.log(managerOffice)
         })
+        .catch((err) => console.log(err));
 }
 
 
@@ -261,6 +247,7 @@ function askIntern() {
             internSchool = data
             console.log(internSchool)
         })
+        .catch((err) => console.log(err));
 }
 
 function askEngineer() {
@@ -270,6 +257,7 @@ function askEngineer() {
             engineerGithub = data
             console.log(engineerGithub)
         })
+        .catch((err) => console.log(err));
 }
 
 // function createEmployee(){
