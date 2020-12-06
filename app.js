@@ -260,9 +260,11 @@ function askIntern() {
     inquirer
         .prompt(intern)
         .then((data) => {
-            internSchool = data
-            console.log(internSchool)
-            console.log(testEmployee)
+            // internSchool = data
+            // console.log(internSchool)
+            // console.log(testEmployee)
+            employee = new Intern(employee.name, employee.id, employee.email, data.school)
+            console.log(employee)
         })
         .catch((err) => console.log(err));
 }
