@@ -14,7 +14,7 @@ const render = require("./lib/htmlRenderer");
 const util = require("util");
 // const makeManager = util.promisify(fs.writeFile);
 // const ManagerHTML = require("./templates/manager.html")
-const makeManager = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
 employees = []
 
@@ -284,7 +284,11 @@ function askManager() {
                     if (data.moreEmployees === "yes") {
                         askEmployee()
                     } else {
-                        console.log(employees)
+                        allEmployees = render(employees)
+                        writeFile("team.html", allEmployees)
+                            .then(() => console.log("html written"))
+                            .catch((err) => console.log(err));
+                        return writeFile("team.html", allEmployees)
                     }
                 })
 
