@@ -158,6 +158,59 @@ const intern = [
 
 
 function init() {
+
+    addEmployee()
+    // inquirer
+    //     .prompt(anotherEmployee)
+
+
+    //     .then((data) => {
+    //         if (data.moreEmployees === "yes") {
+    //             askEmployee()
+    // inquirer
+    //     .prompt(employee)
+    //     .then((data) => {
+    //         // console.log(data)
+    //         testEmployee = data
+    //         console.log(testEmployee)
+    //         if (data.role === "Engineer") {
+    //             makeCompany("Company.html", testEmployee)
+    //                 .then(() => console.log("Engineer Witten"))
+    //                 .catch((err) => console.log(err));
+    //             return makeCompany("Company.html", testEmployee)
+
+    //             // return engineer.html
+    //         }
+
+
+
+    // if (data.role === "Engineer") {
+    //     console.log("Engineer")
+    //     inquirer
+    //         .prompt(engineer)
+
+    // }
+
+    // if (data.role === "Intern") {
+    //     console.log("Intern")
+    //     inquirer
+    //         .prompt(intern)
+    // }
+
+    // })
+
+
+    //     } else {
+    //         render()
+    //     }
+    // })
+
+    // .catch((err) => console.log(err));
+
+}
+init();
+
+function addEmployee() {
     inquirer
         .prompt(anotherEmployee)
 
@@ -165,37 +218,6 @@ function init() {
         .then((data) => {
             if (data.moreEmployees === "yes") {
                 askEmployee()
-                // inquirer
-                //     .prompt(employee)
-                //     .then((data) => {
-                //         // console.log(data)
-                //         testEmployee = data
-                //         console.log(testEmployee)
-                //         if (data.role === "Engineer") {
-                //             makeCompany("Company.html", testEmployee)
-                //                 .then(() => console.log("Engineer Witten"))
-                //                 .catch((err) => console.log(err));
-                //             return makeCompany("Company.html", testEmployee)
-
-                //             // return engineer.html
-                //         }
-
-
-
-                // if (data.role === "Engineer") {
-                //     console.log("Engineer")
-                //     inquirer
-                //         .prompt(engineer)
-
-                // }
-
-                // if (data.role === "Intern") {
-                //     console.log("Intern")
-                //     inquirer
-                //         .prompt(intern)
-                // }
-
-                // })
             } else {
                 render()
             }
@@ -203,8 +225,8 @@ function init() {
 
         .catch((err) => console.log(err));
 
+
 }
-init();
 
 
 function askEmployee() {
@@ -216,7 +238,7 @@ function askEmployee() {
             // const employee = new Employee(data.name, data.id, data.email)
             // console.log(employee)
             employee = data
-            console.log(employee)
+            // console.log(employee)
             if (data.role === "Manager") {
                 askManager()
             }
@@ -242,9 +264,9 @@ function askManager() {
             // console.log(managerOffice)
             // console.log(testEmployee.name)
             employee = new Manager(employee.name, employee.id, employee.email, data.officeNumber)
-            console.log(employee)
-            employees.push({ employee })
-            console.log(employees)
+            // console.log(employee)
+            employees.push(employee)
+            // console.log(employees)
             // const manager = new Manager(Employee.name, Employee.id, Employee.email, data.officeNumber)
             // console.log(newManger)
             // const newEmployee = new Employee(data.name, data.id, data.email)
@@ -253,12 +275,31 @@ function askManager() {
             // console.log(newEmployee)
             // const manager = new Manager(testEmployee.name, testEmployee.id, testEmployee.email, data.officeNumber);
             // console.log(manager)
+
+            inquirer
+                .prompt(anotherEmployee)
+
+
+                .then((data) => {
+                    if (data.moreEmployees === "yes") {
+                        askEmployee()
+                    } else {
+                        console.log(employees)
+                    }
+                })
+
+                .catch((err) => console.log(err));
+
+
         })
-        // .then()
+        // .prompt(addEmployee())
+        // .then(addEmployee())
+
         // console.log(testEmployee)
         // .then(render(manager))
         .catch((err) => console.log(err));
 }
+
 
 
 function askIntern() {
@@ -269,7 +310,22 @@ function askIntern() {
             // console.log(internSchool)
             // console.log(testEmployee)
             employee = new Intern(employee.name, employee.id, employee.email, data.school)
-            console.log(employee)
+            employees.push(employee)
+            inquirer
+                .prompt(anotherEmployee)
+
+
+                .then((data) => {
+                    if (data.moreEmployees === "yes") {
+                        askEmployee()
+                    } else {
+                        console.log(employees)
+                    }
+                })
+
+                .catch((err) => console.log(err));
+
+
         })
         .catch((err) => console.log(err));
 }
@@ -282,7 +338,23 @@ function askEngineer() {
             // console.log(engineerGithub)
             // console.log(testEmployee)
             employee = new Engineer(employee.name, employee.id, employee.email, data.github)
-            console.log(employee)
+            employees.push(employee)
+            // console.log(employees)
+            inquirer
+                .prompt(anotherEmployee)
+
+
+                .then((data) => {
+                    if (data.moreEmployees === "yes") {
+                        askEmployee()
+                    } else {
+                        console.log(employees)
+                    }
+                })
+
+                .catch((err) => console.log(err));
+
+
         })
         .catch((err) => console.log(err));
 }
