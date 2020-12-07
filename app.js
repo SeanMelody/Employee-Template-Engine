@@ -16,6 +16,8 @@ const util = require("util");
 // const ManagerHTML = require("./templates/manager.html")
 const makeManager = util.promisify(fs.readFile);
 
+employees = []
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -241,6 +243,8 @@ function askManager() {
             // console.log(testEmployee.name)
             employee = new Manager(employee.name, employee.id, employee.email, data.officeNumber)
             console.log(employee)
+            employees.push({ employee })
+            console.log(employees)
             // const manager = new Manager(Employee.name, Employee.id, Employee.email, data.officeNumber)
             // console.log(newManger)
             // const newEmployee = new Employee(data.name, data.id, data.email)
@@ -250,6 +254,7 @@ function askManager() {
             // const manager = new Manager(testEmployee.name, testEmployee.id, testEmployee.email, data.officeNumber);
             // console.log(manager)
         })
+        // .then()
         // console.log(testEmployee)
         // .then(render(manager))
         .catch((err) => console.log(err));
