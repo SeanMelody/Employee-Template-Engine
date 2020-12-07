@@ -284,11 +284,13 @@ function askManager() {
                     if (data.moreEmployees === "yes") {
                         askEmployee()
                     } else {
-                        allEmployees = render(employees)
-                        writeFile("team.html", allEmployees)
-                            .then(() => console.log("html written"))
-                            .catch((err) => console.log(err));
-                        return writeFile("team.html", allEmployees)
+                        // allEmployees = render(employees)
+                        // writeFile("team.html", allEmployees)
+                        //     .then(() => console.log("html written"))
+                        //     .catch((err) => console.log(err));
+                        // return writeFile("team.html", allEmployees)
+                        writeHTML()
+
                     }
                 })
 
@@ -323,10 +325,9 @@ function askIntern() {
                     if (data.moreEmployees === "yes") {
                         askEmployee()
                     } else {
-                        console.log(employees)
+                        writeHTML()
                     }
                 })
-
                 .catch((err) => console.log(err));
 
 
@@ -352,7 +353,7 @@ function askEngineer() {
                     if (data.moreEmployees === "yes") {
                         askEmployee()
                     } else {
-                        console.log(employees)
+                        writeHTML()
                     }
                 })
 
@@ -362,6 +363,15 @@ function askEngineer() {
         })
         .catch((err) => console.log(err));
 }
+
+function writeHTML() {
+    allEmployees = render(employees)
+    writeFile("team.html", allEmployees)
+        .then(() => console.log("html written"))
+        .catch((err) => console.log(err));
+    return writeFile("team.html", allEmployees)
+}
+
 
 // function createEmployee(){
 //     inquirer
