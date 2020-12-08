@@ -1,48 +1,36 @@
+// Consts Required
+
+// Consts for the different JavaScript Files Being Accessed
 const Employee = require("./lib/Employee")
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+
+// Const for the HTML render file
+const render = require("./lib/htmlRenderer");
+
+// Consts for the required Node Modules
+
+// Const for Inquier to prompt the question
 const inquirer = require("inquirer");
+// Const for the Path
 const path = require("path");
+// Const for FS to write the team.HTML file
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
-
+// Const for the promises
 const util = require("util");
 
+// Const to write the File
 const writeFile = util.promisify(fs.writeFile);
 
+// Set Employees to an empty array
 employees = []
 
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
-
-// const testEmployee = {}
-
+// Question to see if the user wold like to add another Employee
 const anotherEmployee = [
     {
         type: "list",
@@ -52,6 +40,7 @@ const anotherEmployee = [
     }
 ]
 
+// Array to get Basic Questions that pertain to the Employee Class
 const employeeQuestions = [
     {
         type: "input",
@@ -75,9 +64,9 @@ const employeeQuestions = [
         choices: ["Manager", "Engineer", "Intern"]
     },
 
-
 ];
 
+// Question to get the Manger's Office Number
 const managerQuestion = [
     {
         type: "input",
@@ -86,7 +75,7 @@ const managerQuestion = [
     },
 ]
 
-
+// Question to get the Engineer's GitHub User Name
 const engineer = [
     {
         type: "input",
@@ -95,6 +84,7 @@ const engineer = [
     },
 ]
 
+// Question to get the Intern's School
 const intern = [
     {
         type: "input",
@@ -103,63 +93,75 @@ const intern = [
     },
 ]
 
+// Init Functino to start the program
 function init() {
-
+    // Call the Add Employee Function
     addEmployee()
 
 }
 init();
 
+// Add Employee Function to add and Employee, and check to see if any have been added
 function addEmployee() {
+    // Inquirer Prompt to ask the AnotherEmployee Question
     inquirer
         .prompt(anotherEmployee)
-
-
+        // Check if Yes or No, to add an Employee
         .then((data) => {
             if (data.moreEmployees === "yes") {
+                // If Yes add an Employee, then run the Ask Employee Function to ask Employee Questions
                 askEmployee()
             } else {
+                // If "no" selected, console log that they must enter at least one employee
                 console.log("Must enter at least one Employee")
             }
         })
-
+        // Catch them Errors
         .catch((err) => console.log(err));
-
-
 }
 
-
+// Ask Employee Questions to get Name, Email, ID, and Role
 function askEmployee() {
-
+    // Prompt the Employee questions
     inquirer
         .prompt(employeeQuestions)
+        // Read the data
         .then((data) => {
 
             employee = data
 
+            // If statements to see what role is selected
+
+            // If Manager is selected, prompt Manager Question(Office Number)
             if (data.role === "Manager") {
                 askManager()
             }
+            // If Intern is selcted, prompt Intern Question(Current School)
             if (data.role === "Intern") {
                 askIntern()
             }
+            // If Engineer is selected, prompt Engineer Question(GitHub Username)
             if (data.role === "Engineer") {
                 askEngineer()
             }
 
         })
+        // Catch Dem Errors
         .catch((err) => console.log(err));
 }
 
+// Manger Function to ask Manager Question
 function askManager() {
+
+    // Prompt the question
     inquirer
         .prompt(managerQuestion)
         .then((data) => {
-
+            // Send the Data to the Manager Class
             employee = new Manager(employee.name, employee.id, employee.email, data.officeNumber)
-
+            // Push the new Manger Data to the Employees Array
             employees.push(employee)
-
+            // Prompt if the user would like to add another Employee
             inquirer
                 .prompt(anotherEmployee)
 

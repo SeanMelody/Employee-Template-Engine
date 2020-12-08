@@ -3,42 +3,84 @@
 
 <head>
     <meta charset="UTF-8" />
+    <!-- Meta tag for page size -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Page Title -->
     <title>My Team</title>
+    <!-- Bootstrap CSS Link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- My CSS Sheet Link -->
     <link rel="stylesheet" href="./assets/style.css">
+    <!-- Google Font Links -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <!-- Font Awesome Link for icons -->
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
-    <!-- Favicon Here -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="./assets/images/Favicon.png" />
 
 </head>
 
 <body>
+    <!-- Header -->
+    <!-- Card Deck Class formats the cards -->
     <div class="card-deck">
         <div class="container-fluid">
             <div class="row">
+                <!-- jumbotron Header -->
                 <div class="col-12 jumbotron mb-3 team-heading bg-dark">
+                    <!-- Title h1 -->
                     <h1 class="text-center">My Team</h1>
                 </div>
             </div>
         </div>
+        <!-- End of Header -->
+        <!-- Employees Input Through Node Inquirer Prompts will populate here  -->
         <div class="container">
             <div class="row">
+                <!-- The Team will populate here -->
                 <div class="team-area col-12 d-flex justify-content-center">
                     <div class="card employee-card shadow bg-white rounded">
                         <div class="card-header bg-info">
-                            <h2 class="card-title">Sean</h2>
+                            <h2 class="card-title">Ashley</h2>
                             <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3>
                         </div>
                         <div class="card-body bg-secondary">
                             <ul class="list-group">
-                                <li class="list-group-item">ID: 123</li>
-                                <li class="list-group-item">Email: <a href="mailto:sean@sean">sean@sean</a></li>
-                                <li class="list-group-item">Office number: 2</li>
+                                <li class="list-group-item">ID: 1</li>
+                                <li class="list-group-item">Email: <a href="mailto:Ash@Ash.com">Ash@Ash.com</a></li>
+                                <li class="list-group-item">Office number: 78</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card employee-card shadow bg-white rounded">
+                        <div class="card-header bg-info">
+                            <h2 class="card-title">Sean</h2>
+                            <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>Engineer</h3>
+                        </div>
+                        <div class="card-body bg-secondary">
+                            <ul class="list-group">
+                                <li class="list-group-item">ID: 1770</li>
+                                <li class="list-group-item">Email: <a
+                                        href="mailto:seandmelody@gmail.com">seandmelody@gmail.com</a></li>
+                                <li class="list-group-item">GitHub: <a href="https://github.com/SeanMelody"
+                                        target="_blank" rel="noopener noreferrer">SeanMelody</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card employee-card shadow bg-white rounded">
+                        <div class="card-header bg-info">
+                            <h2 class="card-title">Arya</h2>
+                            <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>Intern</h3>
+                        </div>
+                        <div class="card-body bg-secondary">
+                            <ul class="list-group">
+                                <li class="list-group-item">ID: 777</li>
+                                <li class="list-group-item">Email: <a href="mailto:Arya@kitty.com">Arya@kitty.com</a>
+                                </li>
+                                <li class="list-group-item">School: CatCollege</li>
                             </ul>
                         </div>
                     </div>
@@ -46,6 +88,7 @@
             </div>
         </div>
     </div>
+    <!-- Footer -->
     <footer class="fixed-bottom">
         <h6>&#169 and &#9829 Sean Melody 2020</h6>
     </footer>
