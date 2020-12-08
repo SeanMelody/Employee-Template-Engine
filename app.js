@@ -12,8 +12,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 const util = require("util");
-// const makeManager = util.promisify(fs.writeFile);
-// const ManagerHTML = require("./templates/manager.html")
+
 const writeFile = util.promisify(fs.writeFile);
 
 employees = []
@@ -104,108 +103,9 @@ const intern = [
     },
 ]
 
-
-// function init() {
-//     inquirer
-//         .prompt(newEmployee)
-
-
-//         .then((data) => {
-//             if (data.newEmployee === "yes") {
-
-//                 inquirer
-//                     .prompt(employee)
-//                     .then((data) => {
-//                         // console.log(data)
-//                         testEmployee = data
-//                         console.log(testEmployee)
-//                         // console.log(Employee.data)
-//                         if (data.role === "Manager") {
-//                             inquirer
-//                                 .prompt(manager)
-//                                 .then((data) => {
-//                                     console.log(data)
-//                                     testEmployee.officeNumber = data
-//                                     console.log(testEmployee)
-
-//                                 })
-//                                 .catch((err) => console.log(err))
-
-//                         }
-//                         if (data.role === "Engineer") {
-//                             console.log("Engineer")
-//                             inquirer
-//                                 .prompt(engineer)
-
-//                         }
-//                         if (data.role === "Intern") {
-//                             console.log("Intern")
-//                             inquirer
-//                                 .prompt(intern)
-//                         }
-//                     })
-//             } else {
-//                 render()
-//             }
-//         })
-
-//         .catch((err) => console.log(err));
-
-// }
-// init();
-
-
-
-
 function init() {
 
     addEmployee()
-    // inquirer
-    //     .prompt(anotherEmployee)
-
-
-    //     .then((data) => {
-    //         if (data.moreEmployees === "yes") {
-    //             askEmployee()
-    // inquirer
-    //     .prompt(employee)
-    //     .then((data) => {
-    //         // console.log(data)
-    //         testEmployee = data
-    //         console.log(testEmployee)
-    //         if (data.role === "Engineer") {
-    //             makeCompany("Company.html", testEmployee)
-    //                 .then(() => console.log("Engineer Witten"))
-    //                 .catch((err) => console.log(err));
-    //             return makeCompany("Company.html", testEmployee)
-
-    //             // return engineer.html
-    //         }
-
-
-
-    // if (data.role === "Engineer") {
-    //     console.log("Engineer")
-    //     inquirer
-    //         .prompt(engineer)
-
-    // }
-
-    // if (data.role === "Intern") {
-    //     console.log("Intern")
-    //     inquirer
-    //         .prompt(intern)
-    // }
-
-    // })
-
-
-    //     } else {
-    //         render()
-    //     }
-    // })
-
-    // .catch((err) => console.log(err));
 
 }
 init();
@@ -219,7 +119,7 @@ function addEmployee() {
             if (data.moreEmployees === "yes") {
                 askEmployee()
             } else {
-                render()
+                console.log("Must enter at least one Employee")
             }
         })
 
@@ -235,18 +135,14 @@ function askEmployee() {
         .prompt(employeeQuestions)
         .then((data) => {
 
-            // const employee = new Employee(data.name, data.id, data.email)
-            // console.log(employee)
             employee = data
-            // console.log(employee)
+
             if (data.role === "Manager") {
                 askManager()
             }
-
             if (data.role === "Intern") {
                 askIntern()
             }
-
             if (data.role === "Engineer") {
                 askEngineer()
             }
@@ -259,36 +155,19 @@ function askManager() {
     inquirer
         .prompt(managerQuestion)
         .then((data) => {
-            // managerOffice = data.officeNumber
-            // console.log(data.officeNumber)
-            // console.log(managerOffice)
-            // console.log(testEmployee.name)
+
             employee = new Manager(employee.name, employee.id, employee.email, data.officeNumber)
-            // console.log(employee)
+
             employees.push(employee)
-            // console.log(employees)
-            // const manager = new Manager(Employee.name, Employee.id, Employee.email, data.officeNumber)
-            // console.log(newManger)
-            // const newEmployee = new Employee(data.name, data.id, data.email)
-            // console.log(newEmployee)
-            // console.log(testEmployee)
-            // console.log(newEmployee)
-            // const manager = new Manager(testEmployee.name, testEmployee.id, testEmployee.email, data.officeNumber);
-            // console.log(manager)
 
             inquirer
                 .prompt(anotherEmployee)
-
 
                 .then((data) => {
                     if (data.moreEmployees === "yes") {
                         askEmployee()
                     } else {
-                        // allEmployees = render(employees)
-                        // writeFile("team.html", allEmployees)
-                        //     .then(() => console.log("html written"))
-                        //     .catch((err) => console.log(err));
-                        // return writeFile("team.html", allEmployees)
+
                         writeHTML()
 
                     }
@@ -298,11 +177,7 @@ function askManager() {
 
 
         })
-        // .prompt(addEmployee())
-        // .then(addEmployee())
 
-        // console.log(testEmployee)
-        // .then(render(manager))
         .catch((err) => console.log(err));
 }
 
@@ -312,9 +187,7 @@ function askIntern() {
     inquirer
         .prompt(intern)
         .then((data) => {
-            // internSchool = data
-            // console.log(internSchool)
-            // console.log(testEmployee)
+
             employee = new Intern(employee.name, employee.id, employee.email, data.school)
             employees.push(employee)
             inquirer
@@ -339,12 +212,10 @@ function askEngineer() {
     inquirer
         .prompt(engineer)
         .then((data) => {
-            // engineerGithub = data
-            // console.log(engineerGithub)
-            // console.log(testEmployee)
+
             employee = new Engineer(employee.name, employee.id, employee.email, data.github)
             employees.push(employee)
-            // console.log(employees)
+
             inquirer
                 .prompt(anotherEmployee)
 
@@ -372,37 +243,3 @@ function writeHTML() {
     return writeFile("team.html", allEmployees)
 }
 
-
-// function createEmployee(){
-//     inquirer
-//     .prompt(employee)
-//     .then((data) => {
-//         // console.log(data)
-//         testEmployee = data
-//         console.log(testEmployee)
-//         if (data.role === "Manager") {
-//             inquirer
-//                 .prompt(manager)
-//                 .then((data) => {
-//                     console.log(data)
-//                     testEmployee.append(data)
-//                     console.log(testEmployee)
-
-//                 })
-//                 .catch((err) => console.log(err))
-
-//         }
-//         if (data.role === "Engineer") {
-//             console.log("Engineer")
-//             inquirer
-//                 .prompt(engineer)
-
-//         }
-//         if (data.role === "Intern") {
-//             console.log("Intern")
-//             inquirer
-//                 .prompt(intern)
-//         }
-//     })
-
-// }
