@@ -163,85 +163,109 @@ function askManager() {
             employees.push(employee)
             // Prompt if the user would like to add another Employee
             inquirer
+                // Promtpt the another Employee Question
                 .prompt(anotherEmployee)
 
                 .then((data) => {
                     if (data.moreEmployees === "yes") {
+                        // If Yes, then ask the Employee Questions
                         askEmployee()
+
+                        // If no, then call the Write HTML function
                     } else {
 
                         writeHTML()
 
                     }
                 })
-
+                // Catch dem Errors
                 .catch((err) => console.log(err));
 
 
         })
-
+        // Gotta catch them errors
         .catch((err) => console.log(err));
 }
 
 
-
+// function to ask the Intern Question
 function askIntern() {
+    // Inquirer to promt the intern question
     inquirer
+        // promt Intern Question
         .prompt(intern)
         .then((data) => {
 
+            // Save the data to the Intern Class
             employee = new Intern(employee.name, employee.id, employee.email, data.school)
+            // Push to the Employees Array
             employees.push(employee)
             inquirer
+                // Prompt to ask if the user wants to add another Employee
                 .prompt(anotherEmployee)
-
-
                 .then((data) => {
+                    // If Yes, then ask the Employee Questions
                     if (data.moreEmployees === "yes") {
                         askEmployee()
                     } else {
+                        // If no, then call the Write HTML function
                         writeHTML()
                     }
                 })
+                // Gotta Catch all the errors
                 .catch((err) => console.log(err));
 
 
         })
+        // Gotta catch them all!
         .catch((err) => console.log(err));
 }
-
+// functino to ask the Engineer Question
 function askEngineer() {
+    // Inquirer to prompt the question
     inquirer
         .prompt(engineer)
         .then((data) => {
-
+            // Save the data to the Engineer Class
             employee = new Engineer(employee.name, employee.id, employee.email, data.github)
+            // Push to the employees Array
             employees.push(employee)
 
             inquirer
+                // Prompt to ask if the user wants to add another Employee
                 .prompt(anotherEmployee)
 
 
                 .then((data) => {
+                    // If Yes, then ask the Employee Questions
                     if (data.moreEmployees === "yes") {
                         askEmployee()
                     } else {
+                        // If no, then call the Write HTML function
                         writeHTML()
                     }
                 })
-
+                // Catching errors
                 .catch((err) => console.log(err));
 
 
         })
+        // Catching even more errors!
         .catch((err) => console.log(err));
 }
 
+// Functino to write the Html file
 function writeHTML() {
+    // render the employees array
     allEmployees = render(employees)
+    // write the file
     writeFile("team.html", allEmployees)
+        // Let the user know that the html has been written
         .then(() => console.log("html written"))
+        // Last chance to find some more errors!
         .catch((err) => console.log(err));
+
+    // Return the function
     return writeFile("team.html", allEmployees)
 }
 

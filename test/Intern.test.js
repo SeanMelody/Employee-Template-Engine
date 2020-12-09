@@ -1,3 +1,4 @@
+// Tests for the Intern Class
 const Intern = require("../lib/Intern");
 
 test("Can set school via constructor", () => {

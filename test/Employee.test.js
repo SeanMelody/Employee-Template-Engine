@@ -1,3 +1,5 @@
+// Tests for the Employee Class
+
 const Employee = require("../lib/Employee");
 // const { expect } = require("@jest/globals");
 // const { describe } = require("yargs")
